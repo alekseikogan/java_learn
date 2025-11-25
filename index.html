@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой первый HTML-документ</title>
+</head>
+<body>
+    <h1>Я успешно создал свой первый документ</h1>
+    <p>Это мой первый опыт работы с HTML!</p>
+    <a href="location.html">Перейти на другую страницу</a>
+    <hr/>
+    <img src="pic1.png" widtd="240" height="180" alt="Изображение сендвич" />
+    <img src="pic2.jpg" widtd="240" height="180" alt="Селедочка"/>
+
+    <table>
+        <tr>
+            <td>Столбец 1</td>
+            <td>Столбец 2</td>
+        </tr>
+        <tr>
+            <td>Данные 1</td>
+            <td>Данные 2</td>
+        </tr>
+    </table>
+
+    <form action="/submit" method="POST">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" />
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" />
+        <input type="submit" value="Войти" />
+    </form>
+
+    <br>
+
+    <input type="checkbox" id="subscribe" name="subscribe1" />
+    <label for="subscribe1">Подписаться на новости</label>
+
+    <input type="checkbox" id="subscribe" name="subscribe2" />
+    <label for="subscribe2">Отписаться</label>
+
+    <br>
+
+    <input type="radio" id="option1" name="options" value="1" />
+    <label for="option1">Опция 1</label>
+    <input type="radio" id="option2" name="options" value="2" />
+    <label for="option2">Опция 2</label>
+
+    <br>
+
+    <input type="radio" id="option11" name="options2" value="111" />
+    <label for="option1">Опция 11</label>
+    <input type="radio" id="option22" name="options2" value="222" />
+    <label for="option2">Опция 22</label>
+
+    <br>
+
+    <input type="file" id="fileUpload" name="fileUpload" />
+    <input type="text" id="textInput" name="textInput" />
+    <textarea id="textArea" name="textArea"></textarea>
+
+    <br>
+
+    <style> 
+        select {
+            width: 200px;
+            height: 30px;
+            color: blue;
+            background-color: lightgray;
+        }
+    </style>
+
+    <select id="dropdown" name="dropdown" >
+        <option value="value1">Значение 1</option>
+        <option value="value2">Значение 2</option>
+    </select>
+
+
+</body>
+</html>

@@ -5,20 +5,63 @@
     <title>Мой первый HTML-документ</title>
 </head>
 <body>
+    <p> </p>
     <div class="container">
         <div class="row">
+            <div class="row">
+                <div class="col">
+                    <h1>Our Menu</h1>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary position-relative">
+                        Inbox
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            99+
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
             <div class="col">
-                <h1>Our Menu</h1>
-                <h2>Falafel</h2>
-                <p>Delicious falafel served with fresh vegetables and tahini sauce.</p>
-                <img src="pic1.png" class="img-fluid" alt="Falafel Image"/>
-                <h2>Hummus</h2>
-                <p>Creamy hummus made from chickpeas, olive oil, and garlic.</p>
-                <img src="pic2.jpg" class="img-fluid" alt="Hummus Image"/>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                           <img src="pic3.jpg" class="cart-img-top" alt="Calamari Image"/>
+                            <div class="body">
+                                <h2 class="cart-title">Calamari <span class="badge bg-primary">New</span></h2>
+                                <p class="cart-text">Crispy fried calamari served with a side of marinara sauce.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                           <img src="pic1.png" class="cart-img-top" alt="Falafel Image"/>
+                            <div class="body">
+                                <h2 class="cart-title">Falafel</h2>
+                                <p class="cart-text">Delicious falafel served with fresh vegetables and tahini sauce.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <img src="pic2.jpg" class="cart-img-top" alt="Hummus Image"/> 
+                            <div class="body">
+                                <h2 class="cart-title">Hummus</h2>
+                                <p class="cart-text">Creamy hummus made from chickpeas, olive oil, and garlic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <div class="col">
                 <h2>Prices</h2>
                 <table class="table">
+                    <tr>
+                        <td>Calamari</td>
+                        <td>$7.99</td>
+                    </tr>
                     <tr>
                         <td>Falafel</td>
                         <td>$5.99</td>
@@ -28,6 +71,9 @@
                         <td>$4.99</td>
                     </tr>
                 </table>
+                <div class="alert alert-info" role="alert">
+                    Try our new Calamari dish today!
+                </div>
             </div>
         </div>
     </div>   

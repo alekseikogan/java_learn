@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "jest": "^30.2.0"
+  },
+  "name": "java_learn",
+  "version": "1.0.0",
+  "description": "Этот репозиторий содержит проекты и практические задания, выполненные в рамках курса **\"Введение в Front-End разработку\"** от Meta.",
+  "main": "console.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

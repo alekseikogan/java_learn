@@ -1,3 +1,5 @@
-console.log("Hello, World!");
-var name = "Alice";
-console.log("Welcome, " + name + "!");
+function camelCase(a,b,c) {
+    return a + b + c;
+}
+
+camelCase(1,2,3);

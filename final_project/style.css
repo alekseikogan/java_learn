@@ -1,0 +1,86 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+img.background {
+    width: 100%;
+    height: auto;
+    display: block; /* убирает лишние отступы снизу */
+    margin-bottom: 2rem;
+}
+
+nav {
+    background-color: black;
+    padding: 1rem; /* отступы сверху и снизу */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none; /* убирает маркеры списка */
+    padding: 0; /* убирает отступы */
+    margin: 0; /* убирает внешние отступы */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+nav li {
+    margin-right: 20px; /* расстояние между элементами (опционально) */
+}
+
+nav li:hover {
+    transform: rotate(-1deg) scale(1.2);
+}
+
+nav a {
+    color: white;
+    text-decoration: none; /* убирает подчеркивание */
+}
+
+.hero-banner {
+    height: 35vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.three-columns {
+    display: flex;
+    gap: 2rem; /* расстояние между колонками */
+    padding: 2rem; /* отступы по бокам */
+    margin: 0 auto; /* центрирование, если используется max-width */
+}
+
+.column {
+    flex: 1; /* каждая колонка занимает равную ширину */
+    background-color: antiquewhite;
+    padding: 1rem;
+    border-radius: 1rem;
+    border-color: black;
+}
+
+.column img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+footer {
+    background-color: black;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}

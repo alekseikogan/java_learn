@@ -1,13 +1,15 @@
+import { useState } from 'react';
+
 function Btn() {
-    const clickHandler = () => {
-        alert('Button clicked');
-    }
     const mouseOverHandler = () => {
         console.log('Mouse over button');
     }
+
+    const [count, setCount] = useState(0);
+
     return (
-        <button onMouseOver={mouseOverHandler} onClick={clickHandler}>
-            Click me
+        <button onMouseOver={mouseOverHandler} onClick={() => setCount(count + 1)}>
+            Click me! {count}
         </button>
     )
 }

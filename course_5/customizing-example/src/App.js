@@ -8,17 +8,9 @@ import TextInputWithFocusButton from './components/Focus';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import AboutMe from './components/AboutMe';
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import HomePage from './components/HomePage';
 import { useState } from 'react';
 
 function App() {
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
-    const login = () => setLoggedIn(true);
-    const logout = () => setLoggedIn(false);  
 
   return (
     <div className='App'>
@@ -44,17 +36,6 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<AboutMe />} />
       </Routes>
-      
-      <>
-            {loggedIn ? (
-                <div>
-                    <HomePage />
-                    <LogoutButton logout={logout} />
-                </div>
-            ) : (
-                <LoginButton login={login} />
-            )}
-      </>
       
     </div>
   );

@@ -5,16 +5,16 @@ import { useState } from 'react';
 function App() {
   const [name, setName] = useState('');
 
-  const handleSubmit = () => {
-    alert(name);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName('');
+    alert('Form submitted!');
   }
+
   return (
     <div className="App">
       <br />
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        handleSubmit();
-      }}>
+      <form onSubmit={handleSubmit}>
         <div className='Field'>
           <label>Name:</label>
           <input type='text' name='name' placeholder='Naaaaammmee' value={name} 

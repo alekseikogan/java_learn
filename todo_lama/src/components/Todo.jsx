@@ -36,11 +36,16 @@ const Todo = () => {
         console.log(`toggle task with id ${taskId} to ${isDone ? 'done' : 'not done'}`);
     }
 
+    const filterTasks = (query) => {
+        console.log(`Поиск задачи: ${query}`);
+        // return tasks.filter(task => task.title.toLowerCase().includes(query.toLowerCase()));
+    }
+
     return (
         <div className="todo">
             <h1 className="todo__title">To Do List</h1>
             <AddTaskForm />
-            <SearchTaskForm />
+            <SearchTaskForm onSearchInput={filterTasks} />
             <TodoInfo 
                 total={tasks.length}
                 done={tasks.filter(task => task.isDone).length}

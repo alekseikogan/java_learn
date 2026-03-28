@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import AddTaskForm from "./AddTaskForm";
 import SearchTaskForm from "./SearchTaskForm";
 import TodoInfo from "./TodoInfo";
@@ -6,23 +8,27 @@ import TodoList from "./TodoList";
 
 const Todo = () => {
 
-    const tasks = [
-        {
-            id: 1,
-            title: 'Купить хлеб',
-            isDone: false
-        },
-        {
-            id: 2,
-            title: 'Купить молоко',
-            isDone: true
-        },
-        {
-            id: 3,
-            title: 'Купить яйца',
-            isDone: false
-        }
-    ];
+    const [tasks, setTasks] = useState(
+        [
+            {
+                id: 1,
+                title: 'Купить хлеб',
+                isDone: false
+            },
+            {
+                id: 2,
+                title: 'Купить молоко',
+                isDone: true
+            },
+            {
+                id: 3,
+                title: 'Купить яйца',
+                isDone: false
+            }
+        ]
+    );
+
+    const [newTaskTitle, setNewTaskTitle] = useState('');
 
     const deleterAllTasks = () => {
         console.log('delete all tasks');
@@ -42,15 +48,29 @@ const Todo = () => {
     }
 
     const addTask = () => {
-        console.log('add task');
+        console.log(`Добавление задачи: ${newTaskTitle}`);
+        if (newTaskTitle.trim().length > 0) {
+            const newTask = {
+                id: Date.now(),
+                title: newTaskTitle.trim(),
+                isDone: false
+            };
+            setTasks([...tasks, newTask]);
+            setNewTaskTitle('');
+        }
     }
 
     return (
         <div className="todo">
             <h1 className="todo__title">To Do List</h1>
-            <AddTaskForm addTask={addTask} />
+            <AddTaskForm
+                addTask={addTask}
+                newTaskTitle={newTaskTitle}
+                setNewTaskTitle={setNewTaskTitle}
+
+            />
             <SearchTaskForm onSearchInput={filterTasks} />
-            <TodoInfo 
+            <TodoInfo
                 total={tasks.length}
                 done={tasks.filter(task => task.isDone).length}
                 onDeleteAllButtonClick={deleterAllTasks}

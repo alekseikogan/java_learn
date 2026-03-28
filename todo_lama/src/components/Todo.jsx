@@ -31,7 +31,10 @@ const Todo = () => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
 
     const deleterAllTasks = () => {
-        console.log('delete all tasks');
+        const isConfirmed = window.confirm('Вы уверены, что хотите удалить все задачи?');
+        if (isConfirmed) {
+            setTasks([]);
+        }
     }
 
     const deleteTask = (taskId) => {
@@ -42,7 +45,12 @@ const Todo = () => {
     }
 
     const toggleTaskComplete = (taskId, isDone) => {
-        console.log(`toggle task with id ${taskId} to ${isDone ? 'done' : 'not done'}`);
+        setTasks(tasks.map(task => {
+            if (task.id === taskId) {
+                return { ...task, isDone };
+            }
+            return task;
+        }));
     }
 
     const filterTasks = (query) => {

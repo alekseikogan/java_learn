@@ -4,8 +4,10 @@ const TodoList = (props) => {
     const hasTasks = true; // заглушка для проверки наличия задач
 
     const { 
-      tasks = [] 
-    } = props;
+      tasks = [],
+      onDeleteTaskButtonClick,
+      onTaskCompleteChange
+    } = props
 
     if (!hasTasks) {
         return <div className="todo__empty-message"></div>;
@@ -16,6 +18,8 @@ const TodoList = (props) => {
         {tasks.map((task) => (
           <TodoItem
             className="todo-item"
+            onDeleteTaskButtonClick={onDeleteTaskButtonClick}
+            onTaskCompleteChange={onTaskCompleteChange}
             key={task.id}
             {...task}
           />

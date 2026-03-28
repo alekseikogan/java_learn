@@ -1,6 +1,6 @@
 // форма логина
 import "./App.css";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { validateEmail, validatePassword } from "./utils";
 
 const PasswordErrorMessage = () => {
@@ -8,6 +8,8 @@ const PasswordErrorMessage = () => {
     <p className="FieldError">Password should have at least 8 characters</p>
   );
 };
+
+const FormContext = createContext();
 
 function App() {
   const [firstName, setFirstName] = useState("");
@@ -43,61 +45,63 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <h2>Sign Up</h2>
-          <div className="Field">
-            <label>
-              First name <sup>*</sup>
-            </label>
-            <input placeholder="First name"
-              value={firstName}
-              onChange={e => setFirstName(e.target.value)} />
-          </div>
-          <div className="Field">
-            <label>Last name</label>
-            <input  value={lastName} placeholder="Last name" onChange={ e => setLastName(e.target.value) }/>
-          </div>
-          <div className="Field">
-            <label>
-              Email address <sup>*</sup>
-            </label>
-            <input value={email} placeholder="Email address" onChange={ e => setEmail(e.target.value) }/>
-          </div>
-          <div className="Field">
-            <label>
-              Password <sup>*</sup>
-            </label>
-            <input
-              value={password.value}
-              type='password'
-              placeholder="Password"
-              onChange={ e => 
-                setPassword({ ...password, value: e.target.value }) }
-              onBlur={() => 
-                setPassword(
-                  { ...password, isTouched: true }
-              )}
-            />
-            {password.isTouched && password.value.length < 8 && <PasswordErrorMessage />}
-          </div>
-          <div className="Field">
-            <label>
-              Role <sup>*</sup>
-            </label>
-            <select value={role} onChange={e => setRole(e.target.value)}>
-              <option value="role">Role</option>
-              <option value="individual">Individual</option>
-              <option value="business">Business</option>
-            </select>
-          </div>
-          <button type="submit" disabled={!getIsFormValid()}>
-            Create account
-          </button>
-        </fieldset>
-      </form>
-    </div>
+    <FormContext.Provider value={getIsFormValid}>
+      <div className="App">
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            <h2>Sign Up</h2>
+            <div className="Field">
+              <label>
+                First name <sup>*</sup>
+              </label>
+              <input placeholder="First name"
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)} />
+            </div>
+            <div className="Field">
+              <label>Last name</label>
+              <input  value={lastName} placeholder="Last name" onChange={ e => setLastName(e.target.value) }/>
+            </div>
+            <div className="Field">
+              <label>
+                Email address <sup>*</sup>
+              </label>
+              <input value={email} placeholder="Email address" onChange={ e => setEmail(e.target.value) }/>
+            </div>
+            <div className="Field">
+              <label>
+                Password <sup>*</sup>
+              </label>
+              <input
+                value={password.value}
+                type='password'
+                placeholder="Password"
+                onChange={ e => 
+                  setPassword({ ...password, value: e.target.value }) }
+                onBlur={() => 
+                  setPassword(
+                    { ...password, isTouched: true }
+                )}
+              />
+              {password.isTouched && password.value.length < 8 && <PasswordErrorMessage />}
+            </div>
+            <div className="Field">
+              <label>
+                Role <sup>*</sup>
+              </label>
+              <select value={role} onChange={e => setRole(e.target.value)}>
+                <option value="role">Role</option>
+                <option value="individual">Individual</option>
+                <option value="business">Business</option>
+              </select>
+            </div>
+            <button type="submit" disabled={!getIsFormValid()}>
+              Create account
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </FormContext.Provider>
   );
 }
 

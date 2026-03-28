@@ -35,7 +35,10 @@ const Todo = () => {
     }
 
     const deleteTask = (taskId) => {
-        console.log(`delete task with id ${taskId}`);
+        const isConfirmed = window.confirm('Вы уверены, что хотите удалить эту задачу?');
+        if (isConfirmed) {
+            setTasks(tasks.filter(task => task.id !== taskId));
+        }
     }
 
     const toggleTaskComplete = (taskId, isDone) => {
@@ -48,7 +51,6 @@ const Todo = () => {
     }
 
     const addTask = () => {
-        console.log(`Добавление задачи: ${newTaskTitle}`);
         if (newTaskTitle.trim().length > 0) {
             const newTask = {
                 id: Date.now(),

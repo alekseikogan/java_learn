@@ -65,6 +65,7 @@ const Todo = () => {
             };
             setTasks([...tasks, newTask]);
             setNewTaskTitle('');
+            searchQuery && setSearchQuery(''); // Сброс поискового запроса при добавлении новой задачи, если он был установлен
         }
     }
 

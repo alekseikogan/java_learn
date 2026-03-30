@@ -1,13 +1,15 @@
 import TodoItem from "./TodoItem";
 
 const TodoList = (props) => {
-    const hasTasks = true; // заглушка для проверки наличия задач
 
     const { 
       tasks = [],
       onDeleteTaskButtonClick,
-      onTaskCompleteChange
+      onTaskCompleteChange,
+      filteredTasks
     } = props
+
+    const hasTasks = true;
 
     if (!hasTasks) {
         return <div className="todo__empty-message"></div>;
@@ -15,7 +17,7 @@ const TodoList = (props) => {
 
     return (
       <ul className="todo__list">
-        {tasks.map((task) => (
+        {(filteredTasks ?? tasks).map((task) => (
           <TodoItem
             className="todo-item"
             onDeleteTaskButtonClick={onDeleteTaskButtonClick}

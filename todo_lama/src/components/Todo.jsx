@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 
 import AddTaskForm from "./AddTaskForm";
 import SearchTaskForm from "./SearchTaskForm";
@@ -8,8 +8,9 @@ import TodoList from "./TodoList";
 
 const Todo = () => {
 
-    const [tasks, setTasks] = useState(
-        [
+    const [tasks, setTasks] = useState( () => {
+        const savedTasks = localStorage.getItem('tasks');
+        return savedTasks ? JSON.parse(savedTasks) : [
             {
                 id: 1,
                 title: 'Купить хлеб',
@@ -25,8 +26,8 @@ const Todo = () => {
                 title: 'Купить яйца',
                 isDone: false
             }
-        ]
-    );
+        ];
+    });
 
     const [newTaskTitle, setNewTaskTitle] = useState('');
 
@@ -69,6 +70,11 @@ const Todo = () => {
             setNewTaskTitle('');
         }
     }
+
+    useEffect(() => {
+        // Сохраняем задачи в localStorage при каждом изменении списка задач
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
 
     return (
         <div className="todo">

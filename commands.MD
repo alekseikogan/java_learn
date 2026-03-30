@@ -5,4 +5,5 @@ npm start
 npm i react-router-dom@6
 
 Для Ламкова:
+npm install
 npm run dev

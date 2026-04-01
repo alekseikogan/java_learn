@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useRef, use } from "react";
 
 import AddTaskForm from "./AddTaskForm";
 import SearchTaskForm from "./SearchTaskForm";
@@ -30,6 +30,7 @@ const Todo = () => {
     });
 
     const [newTaskTitle, setNewTaskTitle] = useState('');
+    const newTaskInputRef = useRef(null);
 
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -66,6 +67,7 @@ const Todo = () => {
             setTasks([...tasks, newTask]);
             setNewTaskTitle('');
             searchQuery && setSearchQuery(''); // Сброс поискового запроса при добавлении новой задачи, если он был установлен
+            newTaskInputRef.current.focus();
         }
     }
 
@@ -73,6 +75,11 @@ const Todo = () => {
         // Сохраняем задачи в localStorage при каждом изменении списка задач
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
+
+    useEffect(() => {
+        // Фокусируемся на поле ввода новой задачи при загрузке компонента
+        newTaskInputRef.current.focus()
+    }, []);
 
     const clearSearchQuery = searchQuery.trim().toLocaleLowerCase();
 
@@ -87,6 +94,7 @@ const Todo = () => {
                 addTask={addTask}
                 newTaskTitle={newTaskTitle}
                 setNewTaskTitle={setNewTaskTitle}
+                newTaskInputRef={newTaskInputRef}
             />
             <SearchTaskForm 
                 searchQuery={searchQuery}

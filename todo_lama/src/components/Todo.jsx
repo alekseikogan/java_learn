@@ -9,6 +9,7 @@ import Button from "./Button";
 
 
 const Todo = () => {
+    console.log('Todo rendered');
 
     const [tasks, setTasks] = useState( () => {
         const savedTasks = localStorage.getItem('tasks');
@@ -38,7 +39,7 @@ const Todo = () => {
     const firstIncompleteTaskRef = useRef(null);
     const firstIncompleteTaskId = tasks.find(task => !task.isDone)?.id;
 
-    const deleterAllTasks = () => {
+    const deleteAllTasks = () => {
         const isConfirmed = window.confirm('Вы уверены, что хотите удалить все задачи?');
         if (isConfirmed) {
             setTasks([]);
@@ -107,7 +108,7 @@ const Todo = () => {
             <TodoInfo
                 total={tasks.length}
                 done={tasks.filter(task => task.isDone).length}
-                onDeleteAllButtonClick={deleterAllTasks}
+                // onDeleteAllButtonClick={deleteAllTasks}
             />
             <Button
                 onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}

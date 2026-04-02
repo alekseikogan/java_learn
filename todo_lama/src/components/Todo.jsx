@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 
 import AddTaskForm from "./AddTaskForm";
@@ -76,6 +76,11 @@ const Todo = () => {
         }
     }
 
+    const doneTasksCount = useMemo(() => {
+        return tasks.filter(task => task.isDone).length
+    }, [tasks]
+    )
+
     useEffect(() => {
         // Сохраняем задачи в localStorage при каждом изменении списка задач
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -86,11 +91,14 @@ const Todo = () => {
         newTaskInputRef.current.focus()
     }, []);
 
-    const clearSearchQuery = searchQuery.trim().toLocaleLowerCase();
+    const filteredTasks = useMemo(() => {
+        
+        const trimmedSearchQuery = searchQuery.trim().toLocaleLowerCase();
 
-    const filteredTasks = clearSearchQuery.length > 0 
-        ? tasks.filter(task => task.title.toLocaleLowerCase().includes(clearSearchQuery))
+        return trimmedSearchQuery.length > 0 
+        ? tasks.filter(task => task.title.toLocaleLowerCase().includes(trimmedSearchQuery))
         : null;
+    }, [tasks, searchQuery]);
 
     return (
         <div className="todo">
@@ -107,7 +115,7 @@ const Todo = () => {
             />
             <TodoInfo
                 total={tasks.length}
-                done={tasks.filter(task => task.isDone).length}
+                done={doneTasksCount}
                 onDeleteAllButtonClick={deleteAllTasks}
             />
             <Button

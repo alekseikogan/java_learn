@@ -2,7 +2,6 @@ import TodoItem from "./TodoItem";
 import { memo } from "react";
 
 const TodoList = (props) => {
-    console.log('TodoList rendered');
     const { 
       tasks = [],
       onDeleteTaskButtonClick,

@@ -9,7 +9,6 @@ import Button from "./Button";
 
 
 const Todo = () => {
-    console.log('Todo rendered');
 
     const [tasks, setTasks] = useState( () => {
         const savedTasks = localStorage.getItem('tasks');
@@ -62,19 +61,19 @@ const Todo = () => {
         }));
     }, [tasks]);
 
-    const addTask = () => {
+    const addTask = useCallback(() => {
         if (newTaskTitle.trim().length > 0) {
             const newTask = {
                 id: Date.now(),
                 title: newTaskTitle.trim(),
                 isDone: false
             };
-            setTasks([...tasks, newTask]);
+            setTasks((prevTasks) => [...prevTasks, newTask]);
             setNewTaskTitle('');
             searchQuery && setSearchQuery(''); // Сброс поискового запроса при добавлении новой задачи, если он был установлен
             newTaskInputRef.current.focus();
         }
-    }
+    }, [newTaskTitle, ]);
 
     const doneTasksCount = useMemo(() => {
         return tasks.filter(task => task.isDone).length

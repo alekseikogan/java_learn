@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, use } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 
 import AddTaskForm from "./AddTaskForm";
@@ -39,28 +39,28 @@ const Todo = () => {
     const firstIncompleteTaskRef = useRef(null);
     const firstIncompleteTaskId = tasks.find(task => !task.isDone)?.id;
 
-    const deleteAllTasks = () => {
+    const deleteAllTasks = useCallback(() => {
         const isConfirmed = window.confirm('Вы уверены, что хотите удалить все задачи?');
         if (isConfirmed) {
             setTasks([]);
         }
-    }
+    }, []);
 
-    const deleteTask = (taskId) => {
+    const deleteTask = useCallback((taskId) => {
         const isConfirmed = window.confirm('Вы уверены, что хотите удалить эту задачу?');
         if (isConfirmed) {
             setTasks(tasks.filter(task => task.id !== taskId));
         }
-    }
-
-    const toggleTaskComplete = (taskId, isDone) => {
+    }, [tasks]);
+ 
+    const toggleTaskComplete = useCallback((taskId, isDone) => {
         setTasks(tasks.map(task => {
             if (task.id === taskId) {
                 return { ...task, isDone };
             }
             return task;
         }));
-    }
+    }, [tasks]);
 
     const addTask = () => {
         if (newTaskTitle.trim().length > 0) {
@@ -108,7 +108,7 @@ const Todo = () => {
             <TodoInfo
                 total={tasks.length}
                 done={tasks.filter(task => task.isDone).length}
-                // onDeleteAllButtonClick={deleteAllTasks}
+                onDeleteAllButtonClick={deleteAllTasks}
             />
             <Button
                 onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
